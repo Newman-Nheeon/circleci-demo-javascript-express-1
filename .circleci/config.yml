@@ -1,5 +1,10 @@
 version: 2.1
 
+commands:
+  print_pipeline_id:
+    steps:
+      - run: echo $CIRCLE_WORKFLOW_ID
+
 workflows:
   version: 2
   build:
@@ -13,6 +18,7 @@ jobs:
       - image: circleci/node:10.16.3
       - image: mongo:4.2.0
     steps:
+      - print_pipeline_id
       - checkout
       - run:
           name: update-npm
